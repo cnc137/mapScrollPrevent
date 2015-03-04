@@ -33,115 +33,23 @@
         <a id="example" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h2>
         
         <p>For usage examples check this <a href="https://jsfiddle.net/iridis/j0k5hj25/">Link</a></p>
-        <iframe width="100%" height="400" src="https://raw.githubusercontent.com/diazemiliano/mapScrollPrevent/master/example.html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+        <iframe width="100%" height="400" src="https://cdn.rawgit.com/diazemiliano/mapScrollPrevent/master/example.html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
         <hr>
         <section id="main_content">
           <h1>
-<a id="mapscrollprevent" class="anchor" href="#mapscrollprevent" aria-hidden="true"><span class="octicon octicon-link"></span></a>mapScrollPrevent</h1>
-
-<p><a href="https://github.com/diazemiliano/mapScrollPrevent/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License MIT"></a>
-<a href="https://github.com/diazemiliano/mapScrollPrevent/releases"><img src="https://img.shields.io/badge/version-0.4.x-orange.svg" alt="Version  0.4.x"></a></p>
-
-<p>mapScrollPrevent is an easy solution to the problem of page scrolling with Maps.
-This plugin prevents a Google Maps iframe from capturing the mouse's scrolling wheel behavior.</p>
-
-<p>Requires <a href="http://www.jquery.com">jQuery</a>.</p>
-
-<p>You can <a href="https://github.com/diazemiliano/mapScrollPrevent/releases">Download</a> a <strong>Pre-Release</strong> version.</p>
-
-<h2>
-<a id="table-of-contents" class="anchor" href="#table-of-contents" aria-hidden="true"><span class="octicon octicon-link"></span></a>Table of contents</h2>
-
-<ul>
-<li><a href="#usage">Usage</a></li>
-<li><a href="#default-options">Default Options</a></li>
-<li><a href="#license">License</a></li>
-</ul>
-
-<h2>
-<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
-
-<ol>
-<li>
-<p>Include jQuery and mapScrollPrevent Libs in your html.</p>
-
-<div class="highlight highlight-html"><pre>  &lt;<span class="pl-ent">head</span>&gt;
-  // jQuery Google CDN
-<span class="pl-s2">  &lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s1"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span> <span class="pl-e">src</span>=<span class="pl-s1"><span class="pl-pds">"</span>https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js?ver=2.1.3<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</span>
-  // mapScrollPrevent rawgit CDN
-<span class="pl-s2">  &lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s1"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span> <span class="pl-e">src</span>=<span class="pl-s1"><span class="pl-pds">"</span>https://cdn.rawgit.com/diazemiliano/mapScrollPrevent/master/mapScrollPrevent.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</span>
-  &lt;/<span class="pl-ent">head</span>&gt;</pre></div>
-</li>
-<li>
-<p>Call mapScrollOff including the following code.</p>
-
-<div class="highlight highlight-html"><pre><span class="pl-s2">  &lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s1"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span>&gt;</span>
-<span class="pl-s2">  $(<span class="pl-st">function</span>() {</span>
-<span class="pl-s2">    <span class="pl-c">// Only Google Maps Selector</span></span>
-<span class="pl-s2">    <span class="pl-s">var</span> googleMapSelector <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">"</span>iframe[src*=<span class="pl-cce">\"</span>google.com/maps<span class="pl-cce">\"</span>]<span class="pl-pds">"</span></span>;</span>
-<span class="pl-s2">    $(googleMapSelector).mapScrollPrevent();</span>
-<span class="pl-s2">  });</span>
-<span class="pl-s2">  &lt;/<span class="pl-ent">script</span>&gt;</span></pre></div>
-</li>
-<li>
-<p>Edit defaults.</p>
-
-<div class="highlight highlight-html"><pre><span class="pl-s2">  &lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s1"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span>&gt;</span>
-<span class="pl-s2">  $(<span class="pl-st">function</span>() {</span>
-<span class="pl-s2">    <span class="pl-c">// Only Google Maps Selector</span></span>
-<span class="pl-s2">    <span class="pl-s">var</span> googleMapSelector <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">"</span>iframe[src*=<span class="pl-cce">\"</span>google.com/maps<span class="pl-cce">\"</span>]<span class="pl-pds">"</span></span>;</span>
-<span class="pl-s2">    <span class="pl-s">var</span> options <span class="pl-k">=</span> {</span>
-<span class="pl-s2">                hoverMessage<span class="pl-k">:</span><span class="pl-s1"><span class="pl-pds">"</span>&lt;p&gt;My custom message.&lt;/p&gt;<span class="pl-pds">"</span></span></span>
-<span class="pl-s2">              };</span>
-<span class="pl-s2">    $(googleMapSelector).mapScrollPrevent(options);</span>
-<span class="pl-s2">  });</span>
-<span class="pl-s2">  &lt;/<span class="pl-ent">script</span>&gt;</span></pre></div>
-</li>
-</ol>
-
-<h2>
-<a id="default-options" class="anchor" href="#default-options" aria-hidden="true"><span class="octicon octicon-link"></span></a>Default Options</h2>
-
-<div class="highlight highlight-javascript"><pre><span class="pl-c">// JavaScript</span>
-<span class="pl-s">var</span> options <span class="pl-k">=</span> {
-      <span class="pl-c">// Custom class for map wrap</span>
-      wrapClass<span class="pl-k">:</span><span class="pl-s1"><span class="pl-pds">"</span>map-wrap<span class="pl-pds">"</span></span>,
-      <span class="pl-c">// Custom class for hover div</span>
-      overlayClass<span class="pl-k">:</span><span class="pl-s1"><span class="pl-pds">"</span>map-overlay<span class="pl-pds">"</span></span>,
-      <span class="pl-c">// Hover Message</span>
-      overlayMessage<span class="pl-k">:</span><span class="pl-s1"><span class="pl-pds">"</span>&lt;p&gt;Has &lt;b&gt;Clic&lt;/b&gt; para Navegar el Mapa.&lt;/p&gt;<span class="pl-pds">"</span></span>,
-      <span class="pl-c">// Present on touchscreen devices</span>
-      inTouch<span class="pl-k">:</span><span class="pl-c1">false</span>,
-      <span class="pl-c">// Removes mapScroll</span>
-      stop<span class="pl-k">:</span><span class="pl-c1">false</span>
-    };</pre></div>
-
-<h2>
-<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
-
-<p>The MIT License (MIT)</p>
-
-<p>Copyright (c) 2015 Emiliano Díaz</p>
-
-<p>Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:</p>
-
-<p>The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.</p>
-
-<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.</p>
+            <a id="mapscrollprevent" class="anchor" href="#mapscrollprevent" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+            mapScrollPrevent
+          </h1>
+        
+        <p>
+          <a href="https://github.com/diazemiliano/mapScrollPrevent/blob/master/LICENSE"><img src="https://camo.githubusercontent.com/890acbdcb87868b382af9a4b1fac507b9659d9bf/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d4d49542d626c75652e737667" alt="License MIT" data-canonical-src="https://img.shields.io/badge/license-MIT-blue.svg" style="max-width:100%;"></a>
+          <a href="https://github.com/diazemiliano/mapScrollPrevent/releases"><img src="https://camo.githubusercontent.com/6359f8afe44ddcff0eba6686b919e7d2166fc00d/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f76657273696f6e2d302e342e782d6f72616e67652e737667" alt="Version  0.4.x" data-canonical-src="https://img.shields.io/badge/version-0.4.x-orange.svg" style="max-width:100%;"></a>
+          <a href="http://diazemiliano.github.io/mapScrollPrevent/"><img src="https://camo.githubusercontent.com/ab50e412d831915eaa5023097f0d5cec2c376dc4/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f776562736974652d687474702533412532462532466469617a656d696c69616e6f2e6769746875622e696f2532466d61705363726f6c6c50726576656e742532462d6c69676874677265792e737667" alt="Website Link" data-canonical-src="https://img.shields.io/badge/website-http%3A%2F%2Fdiazemiliano.github.io%2FmapScrollPrevent%2F-lightgrey.svg" style="max-width:100%;"></a></p>
+        
+        <p>Requires <a href="http://www.jquery.com">jQuery</a>.</p>
+        
+        <p>You can <a href="https://github.com/diazemiliano/mapScrollPrevent/releases">Download</a> a <strong>Pre-Release</strong> version.</p>
         </section>
-
         <footer>
           Mapscrollprevent is maintained by <a href="https://github.com/diazemiliano">diazemiliano</a><br>
           This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
