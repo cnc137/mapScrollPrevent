@@ -1,12 +1,13 @@
 <?php
 /*
-Plugin Name:
-Plugin URI:
-Description:
+Plugin Name: mapScrollPrevent for wordpress (jQuery Google Maps Scroll Prevent Plugin)
+Plugin URI: https://github.com/diazemiliano/mapScrollPrevent
+Description: mapScrollPrevent is an easy solution to the problem of page scrolling with Google Maps.
 Version: 0.1
-Author:
-Author URI:
+Author: Emiliano Díaz https://github.com/diazemiliano/
+Author URI: The MIT License (MIT) Copyright (c) 2015 Emiliano Díaz.
 */
+
 
 defined('ABSPATH') or die('Plugin file cannot be accessed directly.');
 
