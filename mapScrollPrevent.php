@@ -57,6 +57,12 @@ if (!class_exists('MapScrollPrevent')) {
                     array('jquery-' . $this->tag),
                     $this->version
                 );
+                $options = array_merge(
+                    array('selector' => '.' . $this->tag),
+                    $this->options
+                );
+                wp_localize_script($this->tag, $this->tag, $options);
+                wp_enqueue_script($this->tag);
             }
         }
 
