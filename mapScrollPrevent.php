@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: MapScrollPrevent for wordpress (jQuery Google Maps Scroll Prevent Plugin)
+Plugin Name: MapScrollPrevent
 Plugin URI: https://github.com/diazemiliano/mapScrollPrevent/tree/wordpress
 Description: mapScrollPrevent is an easy solution to the problem of page scrolling with Google Maps.
 Version: 0.1
@@ -18,11 +18,12 @@ if (!class_exists('MapScrollPrevent')) {
         protected $tag = 'mapscrollprevent';
         protected $name = 'MapScrollPrevent';
         protected $version = '0.1';
+        protected $options = array();
         protected $settings = array(
-          'typeDelay' => array(
+          'selector' => array(
             'description' => 'Google Map Slector',
-            'validator' => 'text',
-            'placeholder' => 'iframe[src*=\"google.com/maps\"]'
+            'validator' => 'small-text',
+            'default' => 'iframe[src*=\"google.com/maps\"]',
           )
         );
 
@@ -37,6 +38,7 @@ if (!class_exists('MapScrollPrevent')) {
             }
 
             $this->enqueue();
+
         }
 
         protected function enqueue()
@@ -57,13 +59,24 @@ if (!class_exists('MapScrollPrevent')) {
                     array('jquery-' . $this->tag),
                     $this->version
                 );
-                $options = array_merge(
-                    array('selector' => '.' . $this->tag),
-                    $this->options
-                );
-                wp_localize_script($this->tag, $this->tag, $options);
-                wp_enqueue_script($this->tag);
+                add_action('wp_head', array( &$this, 'custom_js'));
+                // $options = array_merge(
+                //     $this->options
+                // );
+
+                // wp_localize_script($this->tag, $this->tag, $options);
+                // wp_enqueue_script($this->tag);
             }
+        }
+
+        public function custom_js()
+        {
+            echo '<script type="text/javascript">
+            $(function() {
+              var googleMapSelector = "'.$this->options['jQuerySelector'].'";
+                $(googleMapSelector).mapScrollPrevent();
+            });
+            </script>';
         }
 
         public function settings()
@@ -101,12 +114,9 @@ if (!class_exists('MapScrollPrevent')) {
               'id' => $this->tag . '_' . $options['id'],
               'name' => $this->tag . '[' . $options['id'] . ']',
               'type' => ( isset( $options['type'] ) ? $options['type'] : 'text' ),
-              'class' => 'small-text',
+              'class' => 'regular-text',
               'value' => (array_key_exists('default', $options) ? $options['default'] : null)
             );
-            if (isset($this->options[$options['id']])) {
-                $atts['value'] = $this->options[$options['id']];
-            }
             if (isset( $options['placeholder'])) {
                 $atts['placeholder'] = $options['placeholder'];
             }
@@ -115,12 +125,12 @@ if (!class_exists('MapScrollPrevent')) {
                 $item = esc_attr($key) . '="' . esc_attr($item) . '"';
             });
 
-            echo '<label>' .
-              '<input ' . implode(' ', $atts) .' />';
+            echo '<label for="'.$this->tag . '_' . $options['id'] .'">';
             if (array_key_exists('description', $options)) {
                 esc_html_e($options['description']);
             }
             echo '</label>';
+            echo '<input ' . implode(' ', $atts) .' />';
         }
 
         public function settings_validate($input)
