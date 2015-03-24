@@ -3,7 +3,7 @@
 Plugin Name: MapScrollPrevent
 Plugin URI: https://github.com/diazemiliano/mapScrollPrevent/tree/wordpress
 Description: mapScrollPrevent is an easy solution to the problem of page scrolling with Google Maps.
-Version: 0.1
+Version: 0.1.0
 Author: Emiliano Díaz https://github.com/diazemiliano/
 Author URI: The MIT License (MIT) Copyright (c) 2015 Emiliano Díaz.
 */
@@ -55,21 +55,15 @@ if (!class_exists('MapScrollPrevent')) {
                 );
                 wp_enqueue_script(
                     $this->tag,
-                    'https://cdn.rawgit.com/diazemiliano/mapScrollPrevent/master/dist/mapScrollPrevent.js',
+                    'https://cdn.rawgit.com/diazemiliano/mapScrollPrevent/master/dist/mapScrollPrevent.min.js',
                     array('jquery-' . $this->tag),
                     $this->version
                 );
-                add_action('wp_head', array( &$this, 'custom_js'));
-                // $options = array_merge(
-                //     $this->options
-                // );
-
-                // wp_localize_script($this->tag, $this->tag, $options);
-                // wp_enqueue_script($this->tag);
+                add_action('wp_head', array( &$this, 'customJs'));
             }
         }
 
-        public function custom_js()
+        public function customJs()
         {
             echo '<script type="text/javascript">
             $(function() {
@@ -95,7 +89,7 @@ if (!class_exists('MapScrollPrevent')) {
                 add_settings_field(
                     $this->tag . '_' . $id . '_settings',
                     $id,
-                    array( &$this, 'settings_field' ),
+                    array( &$this, 'settingsField' ),
                     $section,
                     $this->tag . '_settings_section',
                     $options
@@ -104,11 +98,11 @@ if (!class_exists('MapScrollPrevent')) {
             register_setting(
                 $section,
                 $this->tag,
-                array( &$this, 'settings_validate' )
+                array( &$this, 'settingsValidate' )
             );
         }
 
-        public function settings_field(array $options = array())
+        public function settingsField(array $options = array())
         {
             $atts = array(
               'id' => $this->tag . '_' . $options['id'],
@@ -133,7 +127,7 @@ if (!class_exists('MapScrollPrevent')) {
             echo '<input ' . implode(' ', $atts) .' />';
         }
 
-        public function settings_validate($input)
+        public function settingsValidate($input)
         {
             $errors = array();
             foreach ($input as $key => $value) {
