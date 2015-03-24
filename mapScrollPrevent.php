@@ -38,7 +38,6 @@ if (!class_exists('MapScrollPrevent')) {
             }
 
             $this->enqueue();
-
         }
 
         protected function enqueue()
@@ -164,6 +163,5 @@ if (!class_exists('MapScrollPrevent')) {
             return $input;
         }
     }
-
     new MapScrollPrevent;
 }
