@@ -2,7 +2,7 @@
 /*
 Plugin Name: MapScrollPrevent
 Plugin URI: https://github.com/diazemiliano/mapScrollPrevent/tree/wordpress
-Description: mapScrollPrevent is an easy solution to the problem of page scrolling with Google Maps.
+Description: mapScrollPrevent for Wordpress is an easy solution to the problem of page scrolling with Google Maps.
 Version: 0.1.0
 Author: Emiliano Díaz https://github.com/diazemiliano/
 Author URI: The MIT License (MIT) Copyright (c) 2015 Emiliano Díaz.
