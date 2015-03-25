@@ -25,15 +25,18 @@ Check the [Live Demo!](http://diazemiliano.github.io/mapScrollPrevent). Use it, 
 1. Configure in Options > Media > mapScrollPrevent
 
 == Screenshots ==
-[![mapScrollPrevent](https://cdn.rawgit.com/diazemiliano/mapScrollPrevent/master/mapScrollPrevent.png)](http://diazemiliano.github.io/mapScrollPrevent)
+[![mapScrollPrevent](https://cdn.rawgit.com/diazemiliano/mapScrollPrevent/wordpress/screenshot-demo.png)](https://github.com/diazemiliano/mapScrollPrevent/tree/wordpress)
+[![mapScrollPrevent](https://cdn.rawgit.com/diazemiliano/mapScrollPrevent/wordpress/screenshot-options.png)](https://github.com/diazemiliano/mapScrollPrevent/tree/wordpress)
 
 == Changelog ==
 
 = 0.1.0 =
 * First development release
+= 0.1.1 =
+* Options & screenshots
 
 == To do's ==
 - **v0.1.x**
-- [ ] Complete wordpress options
-- [ ] Screenshots
+- [x] Complete wordpress options
+- [x] Screenshots
 - [ ] Wordpress demo
