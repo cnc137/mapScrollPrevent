@@ -89,7 +89,6 @@ if (!class_exists('MapScrollPrevent')) {
         public function customJs()
         {
             $js_opts = $this->options;
-            var_dump($js_opts);
             unset($js_opts['selector']);
             echo '<script type="text/javascript">
             $(function() {
