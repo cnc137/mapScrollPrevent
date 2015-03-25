@@ -34,4 +34,6 @@ Check the [Live Demo!](http://diazemiliano.github.io/mapScrollPrevent). Use it, 
 
 == To do's ==
 - **v0.1.x**
-- [ ] Allow change all the options
+- [ ] Complete wordpress options
+- [ ] Screenshots
+- [ ] Wordpress demo

@@ -24,6 +24,26 @@ if (!class_exists('MapScrollPrevent')) {
             'description' => 'Google Map Slector',
             'validator' => 'small-text',
             'default' => 'iframe[src*=\"google.com/maps\"]',
+          ),
+          'wrapClass' => array(
+            'description' => 'Class for wrap "<div>"',
+            'validator' => 'small-text',
+            'default' => 'map-wrap',
+          ),
+          'overlayClass' => array(
+            'description' => 'Class for overlay "<div>"',
+            'validator' => 'small-text',
+            'default' => 'map-overlay',
+          ),
+          'overlayMessage' => array(
+            'description' => 'Hoverlay Message',
+            'validator' => 'small-text',
+            'default' => '<p>Clic para Navegar.</p>',
+          ),
+          'inTouch' => array(
+            'description' => 'Present on touchscreen devices',
+            'type' => 'checkbox',
+            'default' => 1,
           )
         );
 
@@ -64,9 +84,12 @@ if (!class_exists('MapScrollPrevent')) {
 
         public function customJs()
         {
+            $js_opts = $this->options;
+            unset($js_opts['selector']);
             echo '<script type="text/javascript">
             $(function() {
-              var googleMapSelector = "'.$this->options['jQuerySelector'].'";
+              var googleMapSelector = "'.$this->options['selector'].'",
+                  opts = '.json_encode($js_opts).';
                 $(googleMapSelector).mapScrollPrevent();
             });
             </script>';
@@ -107,11 +130,21 @@ if (!class_exists('MapScrollPrevent')) {
               'id' => $this->tag . '_' . $options['id'],
               'name' => $this->tag . '[' . $options['id'] . ']',
               'type' => ( isset( $options['type'] ) ? $options['type'] : 'text' ),
-              'class' => 'regular-text',
+              'class' => ( isset( $options['type'] ) ? '' : 'regular-text' ),
               'value' => (array_key_exists('default', $options) ? $options['default'] : null)
             );
-            if (isset( $options['placeholder'])) {
+
+            if (isset($this->options[$options['id']])) {
+                $atts['value'] = $this->options[$options['id']];
+            }
+            if (isset($options['placeholder'])) {
                 $atts['placeholder'] = $options['placeholder'];
+            }
+            if (isset($options['type']) && $options['type'] == 'checkbox') {
+                if ($atts['value']) {
+                    $atts['checked'] = 'checked';
+                }
+                $atts['value'] = true;
             }
 
             array_walk($atts, function (&$item, $key) {
