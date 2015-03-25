@@ -7,5 +7,5 @@ This plugin is under development but works!!!
 ## To do's & roadmap
 - **v0.1.x**
 - [x] Complete wordpress options
-- [ ] Screenshots
+- [x] Screenshots
 - [ ] Wordpress demo
