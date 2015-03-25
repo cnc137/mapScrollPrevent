@@ -23,27 +23,31 @@ if (!class_exists('MapScrollPrevent')) {
           'selector' => array(
             'description' => 'Google Map Slector',
             'validator' => 'small-text',
+            'placeholder' => 'iframe[src*=\"google.com/maps\"]',
             'default' => 'iframe[src*=\"google.com/maps\"]',
           ),
           'wrapClass' => array(
             'description' => 'Class for wrap "<div>"',
             'validator' => 'small-text',
+            'placeholder' => 'map-wrap',
             'default' => 'map-wrap',
           ),
           'overlayClass' => array(
             'description' => 'Class for overlay "<div>"',
             'validator' => 'small-text',
+            'placeholder' => 'map-overlay',
             'default' => 'map-overlay',
           ),
           'overlayMessage' => array(
             'description' => 'Hoverlay Message',
             'validator' => 'small-text',
-            'default' => '<p>Clic para Navegar.</p>',
+            'placeholder' => 'Clic para Navegar.',
+            'default' => 'Clic para Navegar.',
           ),
           'inTouch' => array(
             'description' => 'Present on touchscreen devices',
             'type' => 'checkbox',
-            'default' => 1,
+            'value' => 1,
           )
         );
 
@@ -85,12 +89,13 @@ if (!class_exists('MapScrollPrevent')) {
         public function customJs()
         {
             $js_opts = $this->options;
+            var_dump($js_opts);
             unset($js_opts['selector']);
             echo '<script type="text/javascript">
             $(function() {
               var googleMapSelector = "'.$this->options['selector'].'",
                   opts = '.json_encode($js_opts).';
-                $(googleMapSelector).mapScrollPrevent();
+                $(googleMapSelector).mapScrollPrevent(opts);
             });
             </script>';
         }
@@ -144,7 +149,7 @@ if (!class_exists('MapScrollPrevent')) {
                 if ($atts['value']) {
                     $atts['checked'] = 'checked';
                 }
-                $atts['value'] = true;
+                  $atts['value'] = true;
             }
 
             array_walk($atts, function (&$item, $key) {
